@@ -27,20 +27,26 @@
                 
             </div>
             <div class="slds-card__body">
+                
+                <apex:pageBlock id="pb">
+                    <apex:pageMessages id="msg"></apex:pageMessages> 
+                     <apex:pageBlockSection title="SMS" id="pbs" columns="1"  showHeader="false">
+                       <apex:inputField value="{!template.Template_Body__c}" style="width:300px;height:100px;" id="smsbody" required="true"/>
+             
+                    </apex:pageBlockSection>
+                       <apex:pageBlockButtons location="bottom">
+                                <apex:commandButton action="{!Send}" value="Send" status="closer" rerender="buttons" styleClass="slds-button slds-button_brand"/>
+                                <apex:commandButton value="Cancel" onclick="window.close()" styleClass="slds-button slds-button_neutral"/>
+                                </apex:pageBlockButtons>
+                </apex:pageBlock>
                 <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
-                    <thead>
-                        <tr class="slds-text-title_caps">
-                            <td>
-                                            <apex:inputField value="{!template.Template_Body__c}" style="width:300px;height:100px;" id="smsbody" required="true"/>
-                            </td>
-                            
-                        </tr>
-                    </thead>
+                    
+                
                     <tbody>
                         <apex:repeat value="{!wrapperList}" var="rec" id="recids">
                             <tr>
-                                 <td data-label="Account Name" >
-                            <apex:inputCheckbox value="{!rec.isChecked}" id="qCheckbox"  onclick="checkone(this,'{!JSENCODE(rec.template.Template_Body__c)}');"/>
+                                <td data-label="Account Name" >
+                                    <apex:inputCheckbox value="{!rec.isChecked}" id="qCheckbox"  onclick="checkone(this,'{!JSENCODE(rec.template.Template_Body__c)}');"/>
                                 </td>
                                 <td data-label="Account Name" >
                                     <div class="slds-truncate" title="{!rec.template.name}" >{!rec.template.name}</div>
