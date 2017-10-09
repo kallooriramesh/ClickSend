@@ -1,0 +1,65 @@
+<apex:page standardController="Contact" recordSetVar="contacts" extensions="SendSMSController"  sidebar="false" showHeader="false">
+    <apex:slds />
+    
+    
+    
+    <apex:form id="frm" >   
+        <apex:pageMessages id="msg"></apex:pageMessages>
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-contact" title="Contact">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2>
+                            <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" >
+                                <span class="slds-text-heading_small">Contacts {!selectedContactsCount} </span>
+                            </a>
+                        </h2>
+                    </div>                  
+                </header>
+                
+                
+                
+            </div>
+            <div class="slds-card__body">
+                <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <td>
+                                            <apex:inputField value="{!template.Template_Body__c}" style="width:300px;height:100px;" id="smsbody" required="true"/>
+                            </td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <apex:repeat value="{!wrapperList}" var="rec" id="recids">
+                            <tr>
+                                 <td data-label="Account Name" >
+                            <apex:inputCheckbox value="{!rec.isChecked}" id="qCheckbox"  onclick="checkone(this,'{!JSENCODE(rec.template.Template_Body__c)}');"/>
+                                </td>
+                                <td data-label="Account Name" >
+                                    <div class="slds-truncate" title="{!rec.template.name}" >{!rec.template.name}</div>
+                                </td>
+                                
+                                <td data-label="Account Name" >
+                                    <div class="slds-truncate" title="{!rec.template.Template_Body__c}" >{!rec.template.Template_Body__c}</div>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+            <footer class="slds-card__footer">
+                <br/>
+            </footer>
+        </article>
+        
+    </apex:form>
+    
+    
+</apex:page>
