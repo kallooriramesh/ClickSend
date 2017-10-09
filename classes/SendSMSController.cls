@@ -34,10 +34,7 @@ public without sharing class SendSMSController {
     {
         this.con = (contact)controller.getRecord();
     }
-    public SendSMSController()
-    {
-       
-    }
+   
     public class TemplateWrapper{
         public Boolean isChecked{get;set;}
         public SMS_Template__c template{get;set;}
